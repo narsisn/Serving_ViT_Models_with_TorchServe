@@ -2,7 +2,7 @@
 Serving ViT Model for Feature Embedding using TorchServe Framework 
 
 # Serving Steps:
-**step 1: Install the TorchServe and It's Requierments**
+**Step 1: Install the TorchServe and It's Requierments**
 
 Please use the following url to install and configure the TorchServe service on your system.
 https://github.com/pytorch/serve/blob/master/README.md#serve-a-model
