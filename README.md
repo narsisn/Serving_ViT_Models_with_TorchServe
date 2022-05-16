@@ -19,14 +19,23 @@ Actually, torchScript is a common way to do inference with a trained model, an i
 **Step 3:  Creating the Handler File**
 
 Customize the behavior of TorchServe by writing a Python script that you package with the model when you use the model archiver. TorchServe executes this code when it runs.
+Please check the handler/vit_handlr.py file. 
 
 **Step 4: Exporting the .mar File (Torch Model Archiver)**
 
-Run : torch-model-archiver --model-name ViT --version 1.0 --serialized-file checkpoints/clip-vit-large-patch14.pt  --handler handler/vit_handler.py
+Run : torch-model-archiver --model-name ViT --version 1.0 --serialized-file checkpoints/clip-vit-large-patch14.pt --export-path model_store  --handler handler/vit_handler.py
 
 A key feature of TorchServe is the ability to package all model artifacts into a single model archive file. It is a separate command line interface (CLI), torch-model-archiver, that can take model checkpoints or model definition file with state_dict, and package them into a .mar file. This file can then be redistributed and served by anyone using TorchServe. It takes in the following model artifacts: a model checkpoint file in case of torchscript or a model definition file and a state_dict file in case of eager mode, and other optional assets that may be required to serve the model. The CLI creates a .mar file that TorchServe's server CLI uses to serve the models.
 
-**Step 5: Deploying and Sending Requests**
+**Step 5: Start TorchServe to serve the model**
 
+Run : torchserve --start --ncs --model-store model_store/ --models ViT.mar
 
-Under Development ...
+**Step 6: Get predictions from a model**
+
+To test the model server, send a request to the server's predictions API. TorchServe supports all inference and management api's through both gRPC and HTTP/REST.
+Downlaod a sample iamge : curl -O https://raw.githubusercontent.com/pytorch/serve/master/docs/images/kitten_small.jpg
+Run: curl http://127.0.0.1:8082/predictions/ViT -T kitten_small.jpg
+to stop the serve use the following command :
+torchserve --stop
+
