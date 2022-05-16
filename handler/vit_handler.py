@@ -28,4 +28,5 @@ class ImageEmbeddingHandler(VisionHandler):
     ])
 
     def postprocess(self, data):
-        return data
+        result = list(data)
+        return result[1].tolist()
