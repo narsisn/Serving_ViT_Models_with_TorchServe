@@ -23,13 +23,6 @@ class SaveModel:
 
     def save_model(self,model):
         '''
-                url = "http://images.cocodataset.org/val2017/000000039769.jpg"
-        image = Image.open(requests.get(url, stream=True).raw)
-        inputs = feature_extractor(images=image, return_tensors="pt")
-        original_outputs = model(**inputs)
-        # Trace model and save
-        traced_model = torch.jit.trace(model, [inputs["pixel_values"]])
-        torch.jit.save(traced_model, "traced_vit.pt")
         # Reload traced model and compare outputs to original one
         loaded_model = torch.jit.load("traced_vit.pt")
         loaded_model.eval()
