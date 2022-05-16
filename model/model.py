@@ -62,7 +62,7 @@ def main():
     # load pretrained model
     model = SM.load_model()
 
-    # Image Embedding 
+    # save the  model with torchscript format 
     demo = SM.save_model(model)
     
 if __name__ == "__main__":
