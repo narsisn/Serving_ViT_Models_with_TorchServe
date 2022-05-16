@@ -22,6 +22,8 @@ Customize the behavior of TorchServe by writing a Python script that you package
 
 **Step 4: Exporting the .mar File (Torch Model Archiver)**
 
+Run : torch-model-archiver --model-name ViT --version 1.0 --serialized-file checkpoints/clip-vit-large-patch14.pt  --handler handler/vit_handler.py
+
 A key feature of TorchServe is the ability to package all model artifacts into a single model archive file. It is a separate command line interface (CLI), torch-model-archiver, that can take model checkpoints or model definition file with state_dict, and package them into a .mar file. This file can then be redistributed and served by anyone using TorchServe. It takes in the following model artifacts: a model checkpoint file in case of torchscript or a model definition file and a state_dict file in case of eager mode, and other optional assets that may be required to serve the model. The CLI creates a .mar file that TorchServe's server CLI uses to serve the models.
 
 **Step 5: Deploying and Sending Requests**

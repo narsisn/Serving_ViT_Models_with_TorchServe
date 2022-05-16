@@ -1,0 +1,21 @@
+
+1) export the model python3 model/model.py 
+2) create .mar file 
+torch-model-archiver --model-name ViT --version 1.0 --serialized-file checkpoints/clip-vit-large-patch14.pt --export-path model_store --handler handler/vit_handler.pyile 
+
+3) run the server 
+torchserve --start --ncs --model-store model_store/ --models ViT.mar
+4) send a query
+curl http://127.0.0.1:8082/predictions/ViT -T kitten_small.jpg
+5) check logs at /log directory 
+6) stop servie 
+torchserve --stop
+
+
+run the service 
+
+
+https://github.com/huggingface/transformers/issues/15354
+https://github.com/FrancescoSaverioZuppichini/torchserve-tryout/blob/master/MyHandler.py
+https://github.com/pytorch/serve/blob/master/examples/nmt_transformer/model_handler_generalized.py
+pip3 install nvgpu captum 

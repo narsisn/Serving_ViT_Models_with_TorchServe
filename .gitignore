@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# saved model and checkpoints  .pt and .pth files
+*.pt
+*.mar
+
 # C extensions
 *.so
 
